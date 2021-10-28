@@ -1,0 +1,238 @@
+@keyframes listenner {
+    0%{height: 50px;}
+    100%{height:90%;}
+
+}
+@keyframes listenner-back {
+    0%{height: 90%;}
+    100%{height:50px;}
+
+}
+
+.table-client {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+
+    width: 50%;
+    min-width: 280px;
+
+    box-shadow: 1px 1px 5px 5px rgba(0, 0, 0, 0.3);
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+
+    .header {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        border-top-left-radius: 30px;
+        border-top-right-radius: 30px;
+        height: 55px;
+        background-color: var(--verde-claro);
+
+        .crud {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--azul-ciano);
+            transition: filter 0.3s;
+
+            &:hover {
+                filter: saturate(3);
+            }
+
+            &:first-child {
+                padding-bottom: 6px;
+                font-size: 35px;
+                font-weight: 500;
+            }
+
+            img {
+                width: 60%;
+            }
+        }
+
+        div {
+            display: flex;
+            width: 60%;
+            height: 40px;
+            position: relative;
+
+            input {
+                padding: 10px;
+                width: 90%;
+                height: 100%;
+                border: none;
+            }
+            span {
+                padding-top: 10px;
+                background-color: var(--azul-ciano);
+                height: 100%;
+                width: 10%;
+                cursor: pointer;
+            }
+        }
+    }
+    .list-client {
+
+        padding-bottom: 15px;
+
+        .description {
+
+            display: grid;
+
+            margin: auto;
+            padding: 5px;
+            margin-top: 15px;
+            width: 95%;
+            gap: 5px;
+
+            box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.3);
+            grid-template-areas:
+                "foto desc"
+                "foto list";
+            grid-template-columns: 1fr 2.5fr;
+
+            
+
+
+            .foto {
+                background-color: rgba(17, 181, 118, 0.404);
+                grid-area: foto;
+                height: 14vw;
+                min-height: 55px;
+                img {
+                    width: 12vw;
+
+                    min-width: 50px;
+                }
+            }
+
+            ul {
+                width: 100%;
+                text-align: justify;
+                grid-area: desc;
+                justify-self: center;
+                list-style: none;
+                li {
+                    background-color: rgb(167, 185, 167);
+                    margin: 5px;
+                    border-radius: 20px;
+                    padding: 10px;
+                    &:first-child {
+                        background-color: var(--verde-claro);
+                        width: 50%;
+                    }
+                }
+            }
+
+            .hidden-list-usina{
+        
+                animation: listenner-back 1 0.3s forwards ease-in-out;
+                
+                        
+            }
+            .visible-list-usina{
+        
+                animation: listenner 1 0.3s forwards ease-in-out;
+                
+                
+                        
+            }
+
+            .usinas-list {
+
+                
+              
+                grid-area: list;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                
+                
+
+                background-color: rgb(167, 185, 167);
+                border-radius: 2vw;
+                padding: 5px;
+                margin: auto;
+                overflow: hidden;
+            
+                
+                width: 98%;
+                
+                
+              
+                margin-top: 35px;
+
+
+                .description-usinas{
+                   
+                    
+                    div{
+                       
+                        display: flex;
+                        flex-direction: column;
+                    }
+                    
+                }
+               
+
+                div {
+                    background-color: var(--verde-claro);
+                    display: flex;
+                    
+                   
+                    width: 100%;
+                    border-radius: 1vw;
+                    margin-top: 10px;
+                    text-align: start;
+                    padding: 5px;
+
+                   
+                    &:first-child {
+                        background-color: transparent;
+                        display: flex;
+                        width: 100%;
+                        font-weight: 700;
+                        justify-content: space-between;
+
+                        span{
+                            cursor: pointer;
+
+                            &:hover{
+                                filter:brightness(3);
+                            }
+                        }
+                    }
+
+                   
+                }
+            }
+        }
+    }
+}
+
+
+@media (max-width: 400px) {
+    .table-client {
+        width: 95%;
+
+        .list-client {
+            .description {
+                ul {
+                    li {
+                        &:first-child {
+                            width: 80%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
