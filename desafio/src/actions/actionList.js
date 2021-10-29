@@ -20,7 +20,7 @@ export function parsedMenuBar(i) {
     return ({ type: 'PARSE', payload: types })
 }
 
-export function invocPayment(i) {
+export function deleteItem(i) {
     let request = i
-    return ({ type: "PAYMENT", payload: request })
+    return ({ type: "DELETE", payload: request })
 }

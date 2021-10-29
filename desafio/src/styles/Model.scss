@@ -1,0 +1,107 @@
+.model-crud {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(30, 112, 70, 0.46);
+
+    > div {
+        display: flex;
+        background-color: white;
+        box-shadow: 1px 1px 3px 5px rgba(0, 0, 0, 0.118);
+        padding: 5px;
+
+        width: 50%;
+
+        .foto {
+            flex: 0.5;
+            background-color: rgba(17, 181, 118, 0.404);
+            height: 18vw;
+            min-height: 55px;
+            img {
+                width: 16vw;
+                margin: auto;
+                min-width: 50px;
+            }
+        }
+
+        form {
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            input {
+                background-color: var(--verde-claro);
+                padding: 10px;
+                border-radius: 2vw;
+                border: none;
+                width: 90%;
+                font-size: 16px;
+            }
+            .buttons {
+                display: flex;
+
+                justify-content: center;
+                width: 90%;
+
+                button {
+                    flex: 1;
+                    background-color: var(--azul-ciano);
+                    padding: 10px;
+                    border-radius: 2vw;
+                    border: none;
+
+                    font-size: 16px;
+                    font-weight: 600;
+                    cursor: pointer;
+
+                    &:hover {
+                        filter: saturate(3);
+                    }
+                }
+                a {
+                    flex: 1;
+                    background-color: #e03036;
+                    text-decoration: none;
+                    color: white;
+                    padding: 10px;
+                    border-radius: 2vw;
+                    border: none;
+
+                    font-size: 16px;
+                    font-weight: 700;
+                    cursor: pointer;
+
+                    &:hover {
+                        filter: saturate(3);
+                    }
+                }
+            }
+        }
+    }
+
+    .sucess-disable{
+        display:none;
+    }
+    .sucess {
+        background-color: var(--verde-claro);
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        position: absolute;
+        
+    }
+}
+
+@media (max-width: 550px) {
+    .model-crud {
+        div {
+            width: 90%;
+        }
+    }
+}

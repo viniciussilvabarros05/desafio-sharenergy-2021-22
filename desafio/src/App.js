@@ -1,19 +1,19 @@
 
 import './App.css';
+import "./styles/Global.scss"
+
 import { MenuLateral } from './components/menu-lateral';
 import { Clients } from './pages/Clientes';
 import Graphic from './pages/graphics';
-import menuLateral from "./reducers/menuLateralReducer"
 import { Header } from './components/Header';
-
-
 
 import { Provider } from "react-redux"
 import { combineReducers, createStore } from "redux"
 import { Route, BrowserRouter, Switch } from "react-router-dom"
-import "./styles/Global.scss"
-import ParseMenu from './reducers/menuBar';
 
+import ParseMenu from './reducers/menuBar';
+import dataClient from './reducers/ReducerCrud';
+import menuLateral from "./reducers/menuLateralReducer"
 
 
 
@@ -23,7 +23,8 @@ function App() {
 
   const allReducers = combineReducers({
     menuLateral: menuLateral,
-    menuBar: ParseMenu
+    menuBar: ParseMenu,
+    Clients : dataClient
   })
 
   const store = createStore(allReducers)
