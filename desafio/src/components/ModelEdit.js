@@ -2,16 +2,22 @@
 import "../styles/Model.scss"
 import fotoClient from "../assets/fotoClient.png"
 import { useDispatch, useSelector } from "react-redux"
+import { updateItem } from "../actions/actionList"
 import assert from "../assets/check-mark.png"
 import swal from "sweetalert"
 
-export function ModelRegister(props) {
+export function ModelEdit(props) {
+
     const Clients = useSelector(state => state.Clients)
     const dispatch = useDispatch()
+    const client = props.client
+    console.log(Clients)
+    let updateClient = {}
 
-    function Register(event) {
+    function Update(event) {
 
         event.preventDefault()
+
 
         const nome = document.getElementById("nome").value
         const numero = document.getElementById("numero").value
@@ -19,59 +25,53 @@ export function ModelRegister(props) {
         const percentual = document.getElementById("percentual").value
         const contentForm = document.getElementById("content-form")
         const alerta = document.querySelector(".sucess")
-
-        let newClient = {}
         let findExistsClient = Clients.filter(item => item.numeroCliente == numero)
 
 
         if (findExistsClient.length > 0) {
-            return swal({
-                title: `O Cliente com o numero ${numero} já existe`,
-                icon:"warning"
-            }) 
+          return swal({
+              title: `O Cliente com o numero ${numero} já existe`,
+              icon:"warning"
+          }) 
         }
 
-        if (!(nome, numero, usinaID, percentual)) {
-
-            return alert("Dados incorretos")
-        }
-
-        newClient = {
+        updateClient = {
             numeroCliente: parseInt(numero),
             nomeCliente: nome,
             usinas: [{
-                usinaId: usinaID,
+                usinaId: parseInt(usinaID),
                 percentualDeParticipacao: parseInt(percentual)
             }]
         }
-        dispatch({ type: "ADD", payload: newClient })
 
-
+        
+        dispatch(updateItem({ update: updateClient, client: client.numeroCliente }))
         alerta.classList.remove("sucess-disable")
         contentForm.style.visibility = "hidden"
 
         setTimeout(() => {
-            props.setModel(false)
+            props.setEdit(false)
             alerta.classList.add("sucess-disable")
+
         }, 600)
 
     }
 
     return (
-        <>
+        <div className="model-crud">
             <div id="content-form">
                 <div className="foto">
                     <img src={fotoClient}></img>
                 </div>
                 <form autoComplete="on">
-                    <input type="text" id="nome" placeholder="Nome do cliente"></input>
-                    <input type='number' id="numero" min="0" placeholder="Número do cliente"></input>
-                    <input type="number" id="usinaID" placeholder="Identificação da usina"></input>
-                    <input type="number" id="percentual" min="0" placeholder="Percentual de participação"></input>
+                    <input type="text" id="nome" placeholder={client.nomeCliente}></input>
+                    <input type='number' id="numero" min="0" placeholder={"Numero: " + client.numeroCliente}></input>
+                    <input type="number" id="usinaID" placeholder={"UsinaId: " + client.usinas[0].usinaId}></input>
+                    <input type="number" id="percentual" min="0" placeholder={"Percentual: " + client.usinas[0].percentualDeParticipacao + "%"}></input>
 
                     <div className="buttons">
-                        <button onClick={Register}>Registrar</button>
-                        <a onClick={() => props.setModel(false)}>Cancelar</a>
+                        <button onClick={Update}>Atualizar</button>
+                        <a onClick={() => props.setEdit(false)}>Cancelar</a>
                     </div>
 
                 </form>
@@ -80,6 +80,8 @@ export function ModelRegister(props) {
             <div className="sucess sucess-disable" >
                 <img src={assert}></img>
             </div>
-        </>
+
+
+        </div>
     )
 }

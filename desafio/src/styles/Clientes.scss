@@ -40,6 +40,7 @@
         background-color: var(--verde-claro);
 
         .crud {
+         
             display: flex;
             align-items: center;
             justify-content: center;
@@ -66,14 +67,15 @@
         }
 
         div {
+            
             display: flex;
-            width: 60%;
+            width: 80%;
             height: 40px;
             position: relative;
 
             input {
                 padding: 10px;
-                width: 90%;
+                width: 100%;
                 height: 100%;
                 border: none;
             }
@@ -132,20 +134,41 @@
                     }
                 }
 
-                .delete-button{
-                   
+                .delete-button {
                     border-radius: 50%;
-                    padding: 4px;
+                    border: none;
+                    padding: 3px;
                     width: 30px;
                     position: absolute;
                     top: 0;
                     right: 0;
                     transition: background 0.3s, transform 0.3s;
 
-                    &:hover{
+                    &:hover {
                         background-color: red;
                         transform: scale(1.5);
                     }
+                }
+
+                .edit-button {
+                    display: flex;
+                    align-items: center;
+                    border-radius: 50%;
+                    position: absolute;
+                    top: 0;
+                    right: 40px;
+                    transition: background 0.3s, transform 0.3s;
+                    padding: 5px;
+
+                    img{
+                        width: 20px;
+                    }
+
+                    &:hover{
+                        background-color:gray;
+                        transform: scale(1.5);
+                    }
+                 
                 }
             }
 
@@ -212,7 +235,7 @@
     }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 680px) {
     .table-client {
         width: 95%;
 
@@ -221,7 +244,7 @@
                 ul {
                     li {
                         &:first-child {
-                            width: 80%;
+                            width: 60%;
                         }
                     }
                 }

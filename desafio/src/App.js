@@ -8,9 +8,9 @@ import Graphic from './pages/graphics';
 import { Header } from './components/Header';
 
 import { Provider } from "react-redux"
-import { combineReducers, createStore } from "redux"
+import { combineReducers, createStore, applyMiddleware} from "redux"
 import { Route, BrowserRouter, Switch } from "react-router-dom"
-
+import thunk from "react-thunk"
 import ParseMenu from './reducers/menuBar';
 import dataClient from './reducers/ReducerCrud';
 import menuLateral from "./reducers/menuLateralReducer"
@@ -25,7 +25,7 @@ function App() {
     menuLateral: menuLateral,
     menuBar: ParseMenu,
     Clients : dataClient
-  })
+  }, applyMiddleware(thunk))
 
   const store = createStore(allReducers)
   return (

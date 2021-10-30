@@ -3,16 +3,10 @@
 export function menuActived() {
 
     return ({ type: 'ACTIVED' })
-
-
-
 }
+
 export function menuDisable() {
-
     return ({ type: 'DISABLE' })
-
-
-
 }
 
 export function parsedMenuBar(i) {
@@ -23,4 +17,9 @@ export function parsedMenuBar(i) {
 export function deleteItem(i) {
     let request = i
     return ({ type: "DELETE", payload: request })
+}
+
+export function updateItem(i) {
+    let request = i
+    return ({ type: "UPDATE", payload: request })
 }

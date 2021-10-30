@@ -1,25 +1,50 @@
 import fotoClient from "../assets/fotoClient.png"
 import excluir from "../assets/excluir.png"
+import editar from "../assets/editar.png"
+
+import { ModelEdit } from "./ModelEdit"
+
 import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { deleteItem } from "../actions/actionList"
-export function ClientCard(props) {
+import swal from "sweetalert"
 
+
+export function ClientCard(props) {
     const dispatch = useDispatch()
     const [listUsina, setListUsina] = useState()
-    
+    const [modelEdit, setEdit] = useState(false)
+
+
     function ExporListUsinas() {
-        
-            if (listUsina) {
-                setListUsina(false)
-            } else {
-                setListUsina(true)
-            }
-        
+
+        if (listUsina) {
+            setListUsina(false)
+        } else {
+            setListUsina(true)
+        }
+
     }
 
     function Delete(i) {
-        dispatch(deleteItem(i))
+
+        swal({
+            title: `Quer realmente excluir ${props.item.nomeCliente}?`,
+            icon: "warning",
+            buttons: ["Cancelar", "Excluir"]
+        }).then(res => {
+            if (res) {
+                dispatch(deleteItem(i))
+                swal({
+                    text: `${props.item.nomeCliente} excluído com sucesso`,
+                    icon: "success"
+                })
+            }
+        })
+    }
+
+    function Edit() {
+        setEdit(true)
     }
 
     return (
@@ -33,8 +58,15 @@ export function ClientCard(props) {
 
                 <ul>
                     <li><strong>{props.item.nomeCliente}</strong></li>
-                    <img alt = "delete" className = "delete-button" onClick={() => Delete(props.item.numeroCliente)} src={excluir} />
                     <li><strong>Numero: </strong>{props.item.numeroCliente}</li>
+
+
+                    <img alt="delete" className="delete-button" onClick={() => Delete(props.item.numeroCliente)} src={excluir} />
+
+                    <div onClick={Edit} className="edit-button">
+                        <img alt="edit" src={editar} />
+                    </div>
+
                 </ul>
 
                 <div className={listUsina ? "usinas-list visible-list-usina" : "usinas-list hidden-list-usina"}>
@@ -57,6 +89,7 @@ export function ClientCard(props) {
                     })}
                 </div>
             </div>
+            {modelEdit?<ModelEdit client  = {props.item} setEdit={setEdit}></ModelEdit>:""}
         </>
 
     )
