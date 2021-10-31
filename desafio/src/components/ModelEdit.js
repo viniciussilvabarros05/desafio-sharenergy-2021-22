@@ -7,11 +7,11 @@ import assert from "../assets/check-mark.png"
 import swal from "sweetalert"
 
 export function ModelEdit(props) {
-
+    const client = props.client
     const Clients = useSelector(state => state.Clients)
     const dispatch = useDispatch()
-    const client = props.client
-    console.log(Clients)
+    
+    
     let updateClient = {}
 
     function Update(event) {
@@ -25,6 +25,7 @@ export function ModelEdit(props) {
         const percentual = document.getElementById("percentual").value
         const contentForm = document.getElementById("content-form")
         const alerta = document.querySelector(".sucess")
+
         let findExistsClient = Clients.filter(item => item.numeroCliente == numero)
 
 
@@ -46,6 +47,7 @@ export function ModelEdit(props) {
 
         
         dispatch(updateItem({ update: updateClient, client: client.numeroCliente }))
+        
         alerta.classList.remove("sucess-disable")
         contentForm.style.visibility = "hidden"
 

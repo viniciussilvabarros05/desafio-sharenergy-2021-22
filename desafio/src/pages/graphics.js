@@ -72,6 +72,7 @@ function Graphic() {
         <div className="point"></div>
         <div><img onClick={() => parseVariable("temperatura_C")} src={celsius} alt="celsius" /></div>
       </div>
+      
       <div className="content-graphic">
         <ResponsiveContainer width="100%" height="80%">
 

@@ -14,27 +14,31 @@ export default function dataClient(state = Clients, action) {
         case "UPDATE":
 
 
-            state.map(  client => {
+            state.map(client => {
                 if (client.numeroCliente == action.payload.client) {
-                    const { nomeCliente, numeroCliente, usinas} = action.payload.update
+                    const { nomeCliente, numeroCliente, usinas } = action.payload.update
 
                     if (nomeCliente) {
-                       client.nomeCliente =  nomeCliente
+                        client.nomeCliente = nomeCliente
                     }
-                    if(numeroCliente){
+                    if (numeroCliente) {
                         client.numeroCliente = numeroCliente
                     }
-                    if(usinas[0].usinaId){
-                          client.usinas[0].usinaId = usinas[0].usinaId
+                    if (usinas[0].usinaId) {
+                        client.usinas[0].usinaId = usinas[0].usinaId
                     }
-                    
-                    if(usinas[0].percentualDeParticipacao){
-                         client.usinas[0].percentualDeParticipacao = usinas[0].percentualDeParticipacao
+
+                    if (usinas[0].percentualDeParticipacao) {
+                        client.usinas[0].percentualDeParticipacao = usinas[0].percentualDeParticipacao
                     }
-                    return client                
+                    return client
                 }
             })
-        
+
+        case "FILTER":
+
+            return state
+
 
         default:
             return state
