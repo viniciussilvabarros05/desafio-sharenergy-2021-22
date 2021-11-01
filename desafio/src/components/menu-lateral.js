@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { menuActived, menuDisable } from "../actions/actionList"
 
 import "../styles/MenuLateral.scss"
-
+import exit from "../assets/sair.png"
 
 export function MenuLateral() {
 
@@ -54,12 +54,7 @@ export function MenuLateral() {
                         to="/Login">LOGIN</NavLink>
 
                     <NavLink
-                        to="/" activeStyle={
-                            {
-                                background: "var(--vinho)",
-                                borderRadius: "50px",
-                                width: "40%"
-                            }} onClick={() => dispatch({ type: "LOGOUT" })}>LOGOUT
+                        to="/" onClick={() => dispatch({ type: "LOGOUT" })}><img width = "25px" src = {exit}/>LOGOUT
                     </NavLink>
                 </nav>
 
