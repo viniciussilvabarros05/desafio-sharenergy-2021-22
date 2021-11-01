@@ -70,7 +70,7 @@ export function ClientCard(props) {
                 <ul>
                     <li><strong>{props.item.nomeCliente}</strong></li>
                     <li><strong>Numero: </strong>{props.item.numeroCliente}</li>
-                    <li><strong>Percentual de lucro: </strong>{PercentageCLient(props.item.usinas)}</li>
+                    <li><strong>Percentual de lucro:</strong>{PercentageCLient(props.item.usinas)}</li>
 
                     <img alt="delete" className="delete-button" onClick={() => Delete(props.item.numeroCliente)} src={excluir} />
 

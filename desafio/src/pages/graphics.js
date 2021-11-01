@@ -66,21 +66,21 @@ function Graphic() {
     <>
 
       <div className="bar-variables">
-        <div> <img onClick={() => parseVariable("potencia_kW")} src={potencia} alt="celsius" /></div>
+        <div > <img onClick={() => parseVariable("potencia_kW")} src={potencia} alt="celsius" /> <span className = "tooltiptext">Potencia</span></div>
 
         <div className="point"></div>
-        <div><img onClick={() => parseVariable("tensao_V")} src={tensao} alt="celsius" /></div>
+        <div><img onClick={() => parseVariable("tensao_V")} src={tensao} alt="celsius" /><span className = "tooltiptext">Tensão</span></div>
         <div className="point"></div>
-        <div><img onClick={() => parseVariable("corrente_A")} src={corrente} alt="celsius" /></div>
+        <div><img onClick={() => parseVariable("corrente_A")} src={corrente} alt="celsius" /><span className = "tooltiptext">Corrente</span></div>
         <div className="point"></div>
-        <div><img onClick={() => parseVariable("temperatura_C")} src={celsius} alt="celsius" /></div>
+        <div><img onClick={() => parseVariable("temperatura_C")} src={celsius} alt="celsius" /><span className = "tooltiptext">Temperatura</span></div>
 
       </div>
 
       <div className="content-graphic">
         <ResponsiveContainer width="100%" height="80%">
 
-          <ComposedChart height={800} data={dataDB_timeassert} >
+          <ComposedChart height={800} data={dataDB_timeassert} margin = {{left: -30}}>
 
             <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
             <XAxis dataKey="tempo_h" scale="auto" />
