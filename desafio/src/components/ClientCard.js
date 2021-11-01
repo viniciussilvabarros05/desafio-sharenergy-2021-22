@@ -5,7 +5,7 @@ import editar from "../assets/editar.png"
 import { ModelEdit } from "./ModelEdit"
 
 import { useState } from "react"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { deleteItem } from "../actions/actionList"
 import swal from "sweetalert"
 
@@ -14,6 +14,7 @@ export function ClientCard(props) {
     const dispatch = useDispatch()
     const [listUsina, setListUsina] = useState()
     const [modelEdit, setEdit] = useState(false)
+    const Percentage = useSelector(state => state.Percentage)
 
 
     function ExporListUsinas() {
@@ -47,19 +48,29 @@ export function ClientCard(props) {
         setEdit(true)
     }
 
+    function PercentageCLient(a) {
+        let formatValue = a.map((item, index) => {
+            return (parseFloat(Percentage)) * (item.percentualDeParticipacao / 100)
+        })
+
+        return formatValue.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+
+    }
+
+
     return (
 
         <>
-            <div key={props.index} className="description">
+            <div key={props.key} className="description">
 
                 <div className="foto">
-                    <img src={fotoClient}></img>
+                    <img src={fotoClient} alt ={props.key}></img>
                 </div>
 
                 <ul>
                     <li><strong>{props.item.nomeCliente}</strong></li>
                     <li><strong>Numero: </strong>{props.item.numeroCliente}</li>
-
+                    <li><strong>Percentual de lucro: </strong>{PercentageCLient(props.item.usinas)}</li>
 
                     <img alt="delete" className="delete-button" onClick={() => Delete(props.item.numeroCliente)} src={excluir} />
 
@@ -89,7 +100,7 @@ export function ClientCard(props) {
                     })}
                 </div>
             </div>
-            {modelEdit?<ModelEdit client  = {props.item} setEdit={setEdit}></ModelEdit>:""}
+            {modelEdit ? <ModelEdit client={props.item} setEdit={setEdit}></ModelEdit> : ""}
         </>
 
     )

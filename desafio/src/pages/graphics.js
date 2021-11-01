@@ -9,11 +9,11 @@ import tensao from "../assets/volt.png"
 import potencia from "../assets/potencia.png"
 
 function Graphic() {
+  const Percentage = useSelector(state => state.Percentage)
   const menuBar = useSelector(state => state.menuBar)
   const datadb = data[0]
   const dataDB_timeassert = []
   const dispatch = useDispatch()
-
 
   function convert(a) {
 
@@ -56,13 +56,16 @@ function Graphic() {
   }
 
 
+  function CalcFullEnergy() {
+    let TotalCash = (Percentage * 0.95).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 
-
+    return ( TotalCash)
+  }
 
   return (
     <>
 
-      <div className="bar-cardapio">
+      <div className="bar-variables">
         <div> <img onClick={() => parseVariable("potencia_kW")} src={potencia} alt="celsius" /></div>
 
         <div className="point"></div>
@@ -71,8 +74,9 @@ function Graphic() {
         <div><img onClick={() => parseVariable("corrente_A")} src={corrente} alt="celsius" /></div>
         <div className="point"></div>
         <div><img onClick={() => parseVariable("temperatura_C")} src={celsius} alt="celsius" /></div>
+
       </div>
-      
+
       <div className="content-graphic">
         <ResponsiveContainer width="100%" height="80%">
 
@@ -86,7 +90,14 @@ function Graphic() {
           </ComposedChart>
 
         </ResponsiveContainer>
+        <div className="legends">
+          <p> Total produzido no dia:<div>{Percentage}kw</div></p>
+          <p>Total de ganhos: <div>{CalcFullEnergy()}</div></p>
+        </div>
+
       </div>
+
+
     </>
   );
 }

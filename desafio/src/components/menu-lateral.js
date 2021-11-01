@@ -1,5 +1,5 @@
 
-import { Link, NavLink } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 
 
 import { useDispatch, useSelector } from "react-redux"
@@ -49,15 +49,9 @@ export function MenuLateral() {
                      
                      to="/Clients">CLIENTES</NavLink>
 
-
-                    <NavLink activeClassName="ActivedMenu"
-                  
-                     to="/pedidos">NOVO CLIENTE</NavLink>
-
-
                     <NavLink activeClassName="ActivedMenu"
                    
-                     to="/contatos">ADMIN</NavLink>
+                     to="/contatos">LOGIN</NavLink>
                 </nav>
 
 

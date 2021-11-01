@@ -26,7 +26,7 @@ export function ModelEdit(props) {
         const contentForm = document.getElementById("content-form")
         const alerta = document.querySelector(".sucess")
 
-        let findExistsClient = Clients.filter(item => item.numeroCliente == numero)
+        let findExistsClient = Clients.filter(item => parseInt(item.numeroCliente) === parseInt(numero))
 
 
         if (findExistsClient.length > 0) {

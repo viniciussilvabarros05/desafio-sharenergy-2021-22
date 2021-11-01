@@ -14,8 +14,8 @@ export default function dataClient(state = Clients, action) {
         case "UPDATE":
 
 
-            state.map(client => {
-                if (client.numeroCliente == action.payload.client) {
+            state.map((client, index) => {
+                if (client.numeroCliente === action.payload.client) {
                     const { nomeCliente, numeroCliente, usinas } = action.payload.update
 
                     if (nomeCliente) {
@@ -35,12 +35,11 @@ export default function dataClient(state = Clients, action) {
                 }
             })
 
-        case "FILTER":
 
-            return state
 
 
         default:
             return state
     }
 }
+

@@ -7,9 +7,11 @@ import { ModelRegister } from "../components/Model"
 import { useState } from "react"
 import { useSelector} from "react-redux"
 
+
 export function Clients() {
 
     const Clients = useSelector(state => state.Clients)
+   
     const [model, setModel] = useState(false)
     const [busca, setBusca] = useState('')
     const ClientsFilter = Clients.filter(item => item.nomeCliente.toLowerCase().includes(busca.toLowerCase()))
@@ -34,7 +36,7 @@ export function Clients() {
                     {ClientsFilter.map((item, index) => {
 
                         return (
-                            <ClientCard setModel={setModel} item={item} index={index}></ClientCard>
+                            <ClientCard setModel={setModel} item={item} key={index}></ClientCard>
                         )
                     })}
                 </div>

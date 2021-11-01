@@ -15,7 +15,7 @@ import thunk from "react-thunk"
 import ParseMenu from './reducers/menuBar';
 import dataClient from './reducers/ReducerCrud';
 import menuLateral from "./reducers/menuLateralReducer"
-
+import Percentage from "./reducers/TotalCash"
 
 
 
@@ -25,7 +25,9 @@ function App() {
   const allReducers = combineReducers({
     menuLateral: menuLateral,
     menuBar: ParseMenu,
-    Clients: dataClient
+    Clients: dataClient,
+    Percentage: Percentage
+
   }, applyMiddleware(thunk))
 
   const store = createStore(allReducers)
@@ -41,10 +43,6 @@ function App() {
 
             <Route path="/produção-do-dia">
               <Graphic />
-            </Route>
-
-            <Route path="/produção-do-dia">
-              <Graphic></Graphic>
             </Route>
 
             <Route path="/Clients">

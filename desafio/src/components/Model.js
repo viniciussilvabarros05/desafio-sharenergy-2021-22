@@ -21,7 +21,7 @@ export function ModelRegister(props) {
         const alerta = document.querySelector(".sucess")
 
         let newClient = {}
-        let findExistsClient = Clients.filter(item => item.numeroCliente == numero)
+        let findExistsClient = Clients.filter(item => parseInt(item.numeroCliente) == parseInt(numero))
 
 
         if (findExistsClient.length > 0) {
@@ -61,7 +61,7 @@ export function ModelRegister(props) {
         <>
             <div id="content-form">
                 <div className="foto">
-                    <img src={fotoClient}></img>
+                    <img alt = "img" src={fotoClient}></img>
                 </div>
                 <form autoComplete="on">
                     <input type="text" id="nome" placeholder="Nome do cliente"></input>
@@ -78,7 +78,7 @@ export function ModelRegister(props) {
             </div>
 
             <div className="sucess sucess-disable" >
-                <img src={assert}></img>
+                <img alt = "assert" src={assert}></img>
             </div>
         </>
     )
