@@ -14,44 +14,53 @@ export function MenuLateral() {
     function handleFocusMenu(event) {
 
         const target = event.target.getAttribute("class")
-        if(target === "content-menuLateral menuExposed"){
+        if (target === "content-menuLateral menuExposed") {
             dispatch(menuDisable())
-        }else{
+        } else {
             dispatch(menuActived())
         }
-        
-        if(target === "menu-hamburguer" || target === "line"){
+
+        if (target === "menu-hamburguer" || target === "line") {
             dispatch(menuDisable())
         }
-        
+
     }
 
     const dispatch = useDispatch()
 
     const menuLateral = useSelector(state => { return state.menuLateral })
 
-  
+
     return (
-        <div onClick = {handleFocusMenu} className ={`content-menuLateral ${menuLateral? "menuExposed" : "menuhidden content-hidden"}`}>
+        <div onClick={handleFocusMenu} className={`content-menuLateral ${menuLateral ? "menuExposed" : "menuhidden content-hidden"}`}>
 
             <div className={`menu-lateral ${menuLateral ? "menuExposed" : "menuhidden"}`}>
                 <div className="menu-hamburguer">
-                    <div className = "line"></div>
-                    <div className = "line"></div>
-                    <div className = "line"></div>
+                    <div className="line"></div>
+                    <div className="line"></div>
+                    <div className="line"></div>
                 </div>
-                
+
                 <nav className="menu-links">
                     <NavLink activeClassName="ActivedMenu" to="/produção-do-dia">PRODUÇÃO DO DIA</NavLink>
 
 
                     <NavLink activeClassName="ActivedMenu"
-                     
-                     to="/Clients">CLIENTES</NavLink>
+
+                        to="/Clients">CLIENTES</NavLink>
 
                     <NavLink activeClassName="ActivedMenu"
-                   
-                     to="/contatos">LOGIN</NavLink>
+
+                        to="/Login">LOGIN</NavLink>
+
+                    <NavLink
+                        to="/" activeStyle={
+                            {
+                                background: "var(--vinho)",
+                                borderRadius: "50px",
+                                width: "40%"
+                            }} onClick={() => dispatch({ type: "LOGOUT" })}>LOGOUT
+                    </NavLink>
                 </nav>
 
 

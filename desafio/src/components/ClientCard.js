@@ -50,7 +50,7 @@ export function ClientCard(props) {
 
     function PercentageCLient(a) {
         let formatValue = a.map((item, index) => {
-            return (parseFloat(Percentage)) * (item.percentualDeParticipacao / 100)
+            return (parseFloat(Percentage)) * 0.95 * (item.percentualDeParticipacao / 100)
         })
 
         return formatValue.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
