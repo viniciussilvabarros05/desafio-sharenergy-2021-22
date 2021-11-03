@@ -12,8 +12,8 @@
 ## Para a instalação:
   no terminal: 
   - Descer para a pasta desafio com "cd desafio"
-    Instalar todas as dependências com "npm install"
-    E rodar o script do react com "npm start"
+  - Instalar todas as dependências com "npm install"
+  - E rodar o script do react com "npm start"
 
 ## Link do Vídeo:
 <a href = ""></a>
