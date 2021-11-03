@@ -11,6 +11,13 @@ import exit from "../assets/sair.png"
 
 export function MenuLateral() {
 
+    const dispatch = useDispatch()
+    const menuLateral = useSelector(state => { return state.menuLateral })
+
+
+    /*Neste trecho, as condições fazem comparações com os nomes das classes dos elementos
+    
+    Somente algumas áreas de alguns elementos, podem fazer o menu lateral sumir, quando clicado*/
     function handleFocusMenu(event) {
 
         const target = event.target.getAttribute("class")
@@ -25,11 +32,6 @@ export function MenuLateral() {
         }
 
     }
-
-    const dispatch = useDispatch()
-
-    const menuLateral = useSelector(state => { return state.menuLateral })
-
 
     return (
         <div onClick={handleFocusMenu} className={`content-menuLateral ${menuLateral ? "menuExposed" : "menuhidden content-hidden"}`}>
@@ -53,8 +55,10 @@ export function MenuLateral() {
 
                         to="/Login">LOGIN</NavLink>
 
+
+                 {/*Aqui emitirá para o estado de admin que a conta será deslogada */}
                     <NavLink
-                        to="/" onClick={() => dispatch({ type: "LOGOUT" })}><img width = "25px" src = {exit}/>LOGOUT
+                        to="/" onClick={() => dispatch({ type: "LOGOUT" })}><img width="25px" src={exit} />LOGOUT
                     </NavLink>
                 </nav>
 

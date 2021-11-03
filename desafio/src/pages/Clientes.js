@@ -12,12 +12,10 @@ export function Clients() {
 
     const Clients = useSelector(state => state.Clients)
 
-    const [model, setModel] = useState(false)
-    const [busca, setBusca] = useState('')
-    const ClientsFilter = Clients.filter(item => item.nomeCliente.toLowerCase().includes(busca.toLowerCase()))
-
-
-
+    const [model, setModel] = useState(false) // Estado para mostrar o modal se true
+    const [busca, setBusca] = useState('') // Estado que recebe strings para utilzaar na busca dos clientes no filtro do crud
+    const ClientsFilter = Clients.filter(item => item.nomeCliente.toLowerCase().includes(busca.toLowerCase())) /* Recebe inicialmente todos os clientes
+    do arquivo dadosClientes.json, mudando quando o estado de busca existir */
 
     return (
         <>

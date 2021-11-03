@@ -12,11 +12,11 @@ import swal from "sweetalert"
 
 export function ClientCard(props) {
     const dispatch = useDispatch()
-    const [listUsina, setListUsina] = useState()
-    const [modelEdit, setEdit] = useState(false)
-    const Percentage = useSelector(state => state.Percentage)
+    const [listUsina, setListUsina] = useState() // Estado que mostra a lista de usinas quando true
+    const [modelEdit, setEdit] = useState(false) // Estado que diz se o cliente sofrerá mudança, trazendo o model de edição
+    const Percentage = useSelector(state => state.Potencia) 
 
-
+/*Função que realiza chamada das listas de usina */
     function ExporListUsinas() {
 
         if (listUsina) {
@@ -26,7 +26,7 @@ export function ClientCard(props) {
         }
 
     }
-
+/*Função que realiza chamada para excluir cliente*/
     function Delete(i) {
 
         swal({
@@ -44,10 +44,8 @@ export function ClientCard(props) {
         })
     }
 
-    function Edit() {
-        setEdit(true)
-    }
 
+/*A função PercentageClient recebe a array de usinas do cliente como parâmetro e retorna seu valor em Real */
     function PercentageCLient(a) {
         let formatValue = a.map((item, index) => {
             return (parseFloat(Percentage)) * 0.95 * (item.percentualDeParticipacao / 100)
@@ -74,7 +72,7 @@ export function ClientCard(props) {
 
                     <img alt="delete" className="delete-button" onClick={() => Delete(props.item.numeroCliente)} src={excluir} />
 
-                    <div onClick={Edit} className="edit-button">
+                    <div onClick={()=> setEdit(true)} className="edit-button">
                         <img alt="edit" src={editar} />
                     </div>
 

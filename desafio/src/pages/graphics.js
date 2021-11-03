@@ -8,12 +8,27 @@ import corrente from "../assets/corrent-a.png"
 import tensao from "../assets/volt.png"
 import potencia from "../assets/potencia.png"
 
+
+
 function Graphic() {
-  const Percentage = useSelector(state => state.Percentage)
-  const menuBar = useSelector(state => state.menuBar)
-  const datadb = data[0]
-  const dataDB_timeassert = []
+  const Potencia = useSelector(state => state.Potencia) //Pegando estado que contem o cálculo total da energia produzida
+  const menuBar = useSelector(state => state.menuBar) // Pegando o estado que o menu de variáveis vão setar para o gráfico mudar 
+  const datadb = data // Database da usina
+  const dataDB_timeassert = [] // Array criada para receber os dados formatados da usina em horas reais
   const dispatch = useDispatch()
+
+
+  /* A função recebe um parâmentro do tipo string, que recebe simplesmente o nome da variável a ser plotada no gráfico */
+
+  function parseVariable(i) {
+    if (menuBar === i) { 
+      return
+    }
+    dispatch(parsedMenuBar(i))
+  }
+
+
+  /*A função convert está recebendo um parâmentro a, nele virá a hora em decimal e retornará o tempo em horas e minutos */
 
   function convert(a) {
 
@@ -26,7 +41,8 @@ function Graphic() {
 
   }
 
-
+  /*Neste forEach, está fazendo uma cópio do datadb para  o dataDB_timeassert com as horas certas */
+  
   datadb.forEach(item => {
 
     const { tempo_h,
@@ -47,40 +63,33 @@ function Graphic() {
 
 
 
+/*====================================== FORMATANDO O VALOR DO LUCRO ===================================== */
+  function HandleCalculatingCash() {
+    let TotalCash = (Potencia * 0.95).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 
-  function parseVariable(i) {
-    if (menuBar === i) {
-      return
-    }
-    dispatch(parsedMenuBar(i))
+    return (TotalCash)
   }
 
-
-  function CalcFullEnergy() {
-    let TotalCash = (Percentage * 0.95).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-
-    return ( TotalCash)
-  }
 
   return (
     <>
 
       <div className="bar-variables">
-        <div > <img onClick={() => parseVariable("potencia_kW")} src={potencia} alt="celsius" /> <span className = "tooltiptext">Potencia</span></div>
+        <div > <img onClick={() => parseVariable("potencia_kW")} src={potencia} alt="celsius" /> <span className="tooltiptext">Potencia</span></div>
 
         <div className="point"></div>
-        <div><img onClick={() => parseVariable("tensao_V")} src={tensao} alt="celsius" /><span className = "tooltiptext">Tensão</span></div>
+        <div><img onClick={() => parseVariable("tensao_V")} src={tensao} alt="celsius" /><span className="tooltiptext">Tensão</span></div>
         <div className="point"></div>
-        <div><img onClick={() => parseVariable("corrente_A")} src={corrente} alt="celsius" /><span className = "tooltiptext">Corrente</span></div>
+        <div><img onClick={() => parseVariable("corrente_A")} src={corrente} alt="celsius" /><span className="tooltiptext">Corrente</span></div>
         <div className="point"></div>
-        <div><img onClick={() => parseVariable("temperatura_C")} src={celsius} alt="celsius" /><span className = "tooltiptext">Temperatura</span></div>
+        <div><img onClick={() => parseVariable("temperatura_C")} src={celsius} alt="celsius" /><span className="tooltiptext">Temperatura</span></div>
 
       </div>
 
       <div className="content-graphic">
         <ResponsiveContainer width="100%" height="80%">
 
-          <ComposedChart height={800} data={dataDB_timeassert} margin = {{left: -30}}>
+          <ComposedChart height={800} data={dataDB_timeassert} margin={{ left: -30 }}>
 
             <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
             <XAxis dataKey="tempo_h" scale="auto" />
@@ -91,8 +100,8 @@ function Graphic() {
 
         </ResponsiveContainer>
         <div className="legends">
-          <p> Total produzido no dia:<div>{Percentage}kw</div></p>
-          <p>Total de ganhos: <div>{CalcFullEnergy()}</div></p>
+          <p> Total produzido no dia:<div>{Potencia}kw</div></p>
+          <p>Total de ganhos: <div>{HandleCalculatingCash()}</div></p>
         </div>
 
       </div>

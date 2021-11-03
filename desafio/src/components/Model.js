@@ -21,15 +21,21 @@ export function ModelRegister(props) {
         const alerta = document.querySelector(".sucess")
 
         let newClient = {}
-        let findExistsClient = Clients.filter(item => parseInt(item.numeroCliente) == parseInt(numero))
+
+        // Neste trecho o findExistsClient traz a verificação se o cliente já está registrado
+        let findExistsClient = Clients.filter(item => parseInt(item.numeroCliente) == parseInt(numero)) 
 
 
+        // Se estiver, ou seja, se algum item retornar na array, o cliente existe e emitirá o alerta
         if (findExistsClient.length > 0) {
             return swal({
                 title: `O Cliente com o numero ${numero} já existe`,
                 icon:"warning"
             }) 
         }
+
+
+        // Se algum desses dados não existir, emitirá um alerta
 
         if (!(nome, numero, usinaID, percentual)) {
 
@@ -44,9 +50,12 @@ export function ModelRegister(props) {
                 percentualDeParticipacao: parseInt(percentual)
             }]
         }
+
         dispatch({ type: "ADD", payload: newClient })
 
 
+        //Alerta de que o cliente foi registrado com sucesso
+        
         alerta.classList.remove("sucess-disable")
         contentForm.style.visibility = "hidden"
 

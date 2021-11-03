@@ -7,8 +7,8 @@ import assert from "../assets/check-mark.png"
 import swal from "sweetalert"
 
 export function ModelEdit(props) {
-    const client = props.client
-    const Clients = useSelector(state => state.Clients)
+    const client = props.client // recebendo as informações de cada cliente como objeto
+    const Clients = useSelector(state => state.Clients) // dados vindo de dadosClientes.json
     const dispatch = useDispatch()
     
     
@@ -47,6 +47,8 @@ export function ModelEdit(props) {
 
         
         dispatch(updateItem({ update: updateClient, client: client.numeroCliente }))
+  
+        //neste trecho, o código faz uma sinalização de sucesso para dizer que o cliente foi modificado
         
         alerta.classList.remove("sucess-disable")
         contentForm.style.visibility = "hidden"

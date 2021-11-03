@@ -1,3 +1,5 @@
+// Diz se o menu lateral aparecerá ou não
+
 export default function menuLateral (state = false, action){
     switch (action.type) {
         case 'ACTIVED':

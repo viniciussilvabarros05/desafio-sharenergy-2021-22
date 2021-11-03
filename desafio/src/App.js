@@ -29,7 +29,7 @@ function App() {
     menuLateral: menuLateral,
     menuBar: ParseMenu,
     Clients: dataClient,
-    Percentage: Percentage,
+    Potencia: Percentage,
     Admin: User
 
   }, applyMiddleware(thunk))

@@ -1,5 +1,7 @@
 import Clients from "../dadosClientes.json"
 
+
+// Este reducer faz o gerenciamento de ações do crud
 export default function dataClient(state = Clients, action) {
     switch (action.type) {
 
