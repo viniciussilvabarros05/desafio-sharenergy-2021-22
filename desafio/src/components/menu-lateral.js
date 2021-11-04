@@ -38,25 +38,17 @@ export function MenuLateral() {
 
         if (admin.email) {
             dispatch({ type: "LOGOUT" })
-
+            sweal({
+                title: "Usuário Deslogado",
+                icon: "warning",
+                timer: 1000
+            })
         } else {
             return
         }
 
     }
 
-    useEffect(() => {
-        if (!admin.email) {
-
-            sweal({
-                title: "Usuário Deslogado",
-                icon: "warning",
-                timer: 1000
-            })
-
-        }
-
-    }, [admin])
 
     return (
         <div onClick={handleFocusMenu} className={`content-menuLateral ${menuLateral ? "menuExposed" : "menuhidden content-hidden"}`}>
