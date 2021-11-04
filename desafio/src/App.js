@@ -16,7 +16,7 @@ import ParseMenu from './reducers/menuBar';
 import dataClient from './reducers/ReducerCrud';
 import menuLateral from "./reducers/menuLateralReducer"
 import Percentage from "./reducers/TotalCash"
-import User from './reducers/UserAdmin';
+import admin from './reducers/UserAdmin';
 import { PrivateRouter } from './components/PrivateRouter';
 import { Login } from './pages/Login';
 
@@ -30,7 +30,7 @@ function App() {
     menuBar: ParseMenu,
     Clients: dataClient,
     Potencia: Percentage,
-    Admin: User
+    Admin: admin
 
   }, applyMiddleware(thunk))
 
@@ -51,10 +51,11 @@ function App() {
 
 
             <PrivateRouter path="/Clients">
-              <Route >
+            
                 <Clients />
-              </Route>
+          
             </PrivateRouter>
+            
             <Route path = "/Login">
               <Login></Login>
             </Route>

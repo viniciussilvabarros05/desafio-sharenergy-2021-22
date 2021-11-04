@@ -26,10 +26,10 @@ export function ModelEdit(props) {
         const contentForm = document.getElementById("content-form")
         const alerta = document.querySelector(".sucess")
 
-        let findExistsClient = Clients.filter(item => parseInt(item.numeroCliente) === parseInt(numero))
+        let findExistsClient = Clients.some(item => parseInt(item.numeroCliente) === parseInt(numero))
 
 
-        if (findExistsClient.length > 0) {
+        if (findExistsClient) {
           return swal({
               title: `O Cliente com o numero ${numero} já existe`,
               icon:"warning"
@@ -65,7 +65,7 @@ export function ModelEdit(props) {
         <div className="model-crud">
             <div id="content-form">
                 <div className="foto">
-                    <img src={fotoClient}></img>
+                    <img src={fotoClient} alt = "client"></img>
                 </div>
                 <form autoComplete="on">
                     <input type="text" id="nome" placeholder={client.nomeCliente}></input>

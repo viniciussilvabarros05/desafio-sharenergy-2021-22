@@ -4,18 +4,26 @@ const datadb = data
 
 function CalcFullEnergy() {
     let i
-    let TotalHour = 0
+    let TotalForHour = 0
     let TotalPotencia
 
 
-    /* A lógica foi a seguinte: O intervalo delta t encontrado foi de 15 minutos a cada 3 dados
-       Então o intervalo será de (0.25 hora) * (soma de todas as potências no intervalo de 15 minutos)
-    */ 
-    for (i = 0; i < datadb.length; i = i + 3) {
+    /* A lógica foi a seguinte:
+     O loop acrescenta 2 a cada rodada, pegando a posição do item i inicialmente setado como 0, e  
+    a posição do item i + 1, assim conseguimos pegar a soma de todas as potências.
 
-        TotalHour = TotalHour + (datadb[i].potencia_kW)
-        TotalPotencia = (TotalHour * 0.25).toFixed(2)
-        
+    Para o intervalo de tempo, a logica foi a mesma para pegar o intervalo entre cada dois dados e multiplicar 
+    seu intervalo por sua soma de potências para cada rodada do loop.
+    
+
+    
+    */
+    for (i = 0; i < datadb.length - 1; i = i + 2) {
+
+        TotalForHour = (TotalForHour + (datadb[i].potencia_kW + datadb[i + 1].potencia_kW) * /*SOMA DAS POTÊNCIAS */
+            (datadb[i + 1].tempo_h - datadb[i].tempo_h)) /*DELTA t */
+
+        TotalPotencia = TotalForHour.toFixed(2)
     }
     return (TotalPotencia)
 
@@ -24,5 +32,5 @@ function CalcFullEnergy() {
 //Setando o estado com o retorno da função
 export default function Percentage(state = CalcFullEnergy(), action) {
 
-   return state
+    return state
 }

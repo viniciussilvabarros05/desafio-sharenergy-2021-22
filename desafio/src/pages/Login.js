@@ -12,9 +12,10 @@ export function Login() {
     const history = useHistory()
 
 
-/*Esta função recebe os valores dos campos de entrada e setam um usuário 
+    /*Esta função recebe os valores dos campos de entrada e setam um usuário 
+    
+    se o usuário não for igual ao que foi criado no reducer UserAdmin, retornará um alerta do sweetalert*/
 
-se o usuário não for igual ao que foi criado no reducer UserAdmin, retornará um alerta do sweetalert*/
     function signIn() {
         const email = document.getElementById("email").value
         const password = document.getElementById("password").value
@@ -27,16 +28,16 @@ se o usuário não for igual ao que foi criado no reducer UserAdmin, retornará 
         dispatch({ type: 'LOGIN', payload: user })
     }
 
-    
-/*o useEffect está olhando as mudanças de estado do admin, caso ele exista,
- será redirecionado para a pagina de clientes, caso o contrário, emitirá o alerta*/
+
+    /*o useEffect está olhando as mudanças de estado do admin, caso ele exista,
+     será redirecionado para a pagina de clientes, caso o contrário, emitirá o alerta*/
     useEffect(() => {
         if (!admin.email) {
             dispatch(menuDisable())
             swal({
                 title: "Usuário sem permissão",
                 icon: "warning",
-                timer:1500
+                timer: 1500
             })
         } else {
             history.push("/Clients")

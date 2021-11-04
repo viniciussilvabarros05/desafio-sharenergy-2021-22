@@ -23,11 +23,12 @@ export function ModelRegister(props) {
         let newClient = {}
 
         // Neste trecho o findExistsClient traz a verificação se o cliente já está registrado
-        let findExistsClient = Clients.filter(item => parseInt(item.numeroCliente) == parseInt(numero)) 
-
-
+        let findExistsClient = Clients.some(item => parseInt(item.numeroCliente) === parseInt(numero)) 
+        
+ 
         // Se estiver, ou seja, se algum item retornar na array, o cliente existe e emitirá o alerta
-        if (findExistsClient.length > 0) {
+        if (findExistsClient) {
+           
             return swal({
                 title: `O Cliente com o numero ${numero} já existe`,
                 icon:"warning"

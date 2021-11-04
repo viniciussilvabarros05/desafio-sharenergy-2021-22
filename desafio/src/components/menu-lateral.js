@@ -8,12 +8,13 @@ import { menuActived, menuDisable } from "../actions/actionList"
 
 import "../styles/MenuLateral.scss"
 import exit from "../assets/sair.png"
-
+import sweal from "sweetalert"
+import { useEffect } from "react"
 export function MenuLateral() {
 
     const dispatch = useDispatch()
     const menuLateral = useSelector(state => { return state.menuLateral })
-
+    const admin = useSelector(state => state.Admin)
 
     /*Neste trecho, as condições fazem comparações com os nomes das classes dos elementos
     
@@ -32,6 +33,30 @@ export function MenuLateral() {
         }
 
     }
+
+    function Logout() {
+
+        if (admin.email) {
+            dispatch({ type: "LOGOUT" })
+
+        } else {
+            return
+        }
+
+    }
+
+    useEffect(() => {
+        if (!admin.email) {
+
+            sweal({
+                title: "Usuário Deslogado",
+                icon: "warning",
+                timer: 1000
+            })
+
+        }
+
+    }, [admin])
 
     return (
         <div onClick={handleFocusMenu} className={`content-menuLateral ${menuLateral ? "menuExposed" : "menuhidden content-hidden"}`}>
@@ -56,10 +81,10 @@ export function MenuLateral() {
                         to="/Login">LOGIN</NavLink>
 
 
-                 {/*Aqui emitirá para o estado de admin que a conta será deslogada */}
-                    <NavLink
-                        to="/" onClick={() => dispatch({ type: "LOGOUT" })}><img width="25px" src={exit} />LOGOUT
-                    </NavLink>
+                    {/*Aqui emitirá para o estado de admin que a conta será deslogada */}
+                    <a
+                        to="" onClick={Logout}><img width="25px" src={exit} alt="exit" />LOGOUT
+                    </a>
                 </nav>
 
 

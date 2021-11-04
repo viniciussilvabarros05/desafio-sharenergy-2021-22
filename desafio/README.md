@@ -22,4 +22,4 @@
 >>>>>>> 877789981363314e190512474ad3aef0ffd3ebc7
 
 ## Link do Vídeo:
-<a href = ""></a>
+<a href = "https://youtu.be/os02TmIJV-w">Assistir</a>
